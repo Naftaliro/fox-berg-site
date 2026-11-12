@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 · fox-berg.com</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#1e1e2e">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <script>
+    (function () {
+      var f;
+      try { f = localStorage.getItem('flavor'); } catch (e) {}
+      if (!f && window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches) f = 'latte';
+      if (f) document.documentElement.dataset.flavor = f;
+    })();
+  </script>
+</head>
+<body>
+
+<canvas id="wall" aria-hidden="true"></canvas>
+
+<header class="bar">
+  <a class="bar-logo" href="https://3hz.dev" aria-label="3hz.dev, the owner's site">
+    <svg viewBox="0 0 24 12" aria-hidden="true"><path d="M0 6 Q2 0 4 6 T8 6 T12 6 T16 6 T20 6 T24 6"/></svg>
+    <span>3hz</span>
+  </a>
+  <nav class="ws" aria-label="this page">
+    <a href="/"><b>1</b><span>for sale</span></a>
+  </nav>
+  <div class="bar-title" aria-hidden="true">404</div>
+  <div class="bar-mods">
+    <button class="mod mod-flavor" id="flavor" type="button" title="switch catppuccin flavor (t)">
+      <span class="swatch" aria-hidden="true"></span><span id="flavor-name">mocha</span>
+    </button>
+    <span class="mod mod-clock" title="my local time (chicago)"><time id="clock">--:--</time></span>
+  </div>
+</header>
+
+<main class="sale">
+  <section class="win" aria-labelledby="t-lost">
+    <header class="win-bar"><h1 class="win-title" id="t-lost"><span class="sr-only">404, page not found</span><span aria-hidden="true"><b>kitty</b> ~</span></h1><span class="win-meta">exit 1</span></header>
+    <div class="win-body">
+      <p class="cmd"><span class="p-dir">~</span> <span class="p-arrow">❯</span> cd <span id="path">/somewhere</span></p>
+      <p class="err">cd: no such file or directory: <span id="path2">/somewhere</span></p>
+      <p class="sale-note">there's only one page here. fox-berg.com is for sale.</p>
+      <div class="sale-cta"><a class="btn" href="/">cd ~</a></div>
+    </div>
+  </section>
+</main>
+
+<script>
+  document.getElementById('path').textContent = document.getElementById('path2').textContent = location.pathname;
+</script>
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>fox-berg.com is for sale</title>
+  <meta name="description" content="the domain fox-berg.com is for sale. make an offer.">
+  <link rel="canonical" href="https://fox-berg.com/">
+  <meta name="theme-color" content="#1e1e2e">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="fox-berg.com">
+  <meta property="og:title" content="fox-berg.com is for sale">
+  <meta property="og:description" content="the domain fox-berg.com is for sale. make an offer.">
+  <meta property="og:image" content="https://fox-berg.com/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="a terminal window that says fox-berg.com, for sale, make an offer.">
+  <meta property="og:url" content="https://fox-berg.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="fox-berg.com is for sale">
+  <meta name="twitter:description" content="the domain fox-berg.com is for sale. make an offer.">
+  <meta name="twitter:image" content="https://fox-berg.com/assets/img/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/assets/fonts/iosevka-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/iosevka-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- pick the flavor before first paint: your saved pick, else latte if the system is light, else mocha -->
+  <script>
+    (function () {
+      var f;
+      try { f = localStorage.getItem('flavor'); } catch (e) {}
+      if (!f && window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches) f = 'latte';
+      if (f) document.documentElement.dataset.flavor = f;
+    })();
+  </script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z"/><path d="M3 7l9 6l9 -6"/></symbol>
+</svg>
+
+<canvas id="wall" aria-hidden="true"></canvas>
+
+<header class="bar">
+  <a class="bar-logo" href="https://3hz.dev" aria-label="3hz.dev, the owner's site">
+    <svg viewBox="0 0 24 12" aria-hidden="true"><path d="M0 6 Q2 0 4 6 T8 6 T12 6 T16 6 T20 6 T24 6"/></svg>
+    <span>3hz</span>
+  </a>
+  <nav class="ws" aria-label="this page">
+    <a href="/" aria-current="page"><b>1</b><span>for sale</span></a>
+  </nav>
+  <div class="bar-title" aria-hidden="true">fox-berg.com</div>
+  <div class="bar-mods">
+    <button class="mod mod-flavor" id="flavor" type="button" title="switch catppuccin flavor (t)">
+      <span class="swatch" aria-hidden="true"></span><span id="flavor-name">mocha</span>
+    </button>
+    <span class="mod mod-clock" title="my local time (chicago)"><time id="clock">--:--</time></span>
+  </div>
+</header>
+
+<main class="sale">
+  <section class="win" aria-labelledby="t-sale">
+    <header class="win-bar"><p class="win-title" aria-hidden="true"><b>kitty</b> ~</p><span class="win-meta">for sale</span></header>
+    <div class="win-body">
+      <p class="cmd" aria-hidden="true"><span class="p-dir">~</span> <span class="p-arrow">❯</span> whois fox-berg.com</p>
+      <h1 class="sale-name" id="t-sale">fox-berg<span class="tld">.com</span><span class="sr-only"> is for sale</span></h1>
+      <p class="sale-intro">this domain is for sale.</p>
+      <div class="sale-rule" aria-hidden="true">─────────────────────────────</div>
+      <dl class="sale-info">
+        <div><dt>status</dt><dd class="on">for sale</dd></div>
+        <div><dt>price</dt><dd>make an offer</dd></div>
+        <div><dt>payment</dt><dd>through <a href="https://www.escrow.com">escrow.com</a></dd></div>
+        <div><dt>transfer</dt><dd>to any registrar</dd></div>
+        <div><dt>owner</dt><dd>mitchell / 3hz · <a href="https://3hz.dev">3hz.dev</a> · <a href="https://mitchellberg.org">mitchellberg.org</a></dd></div>
+      </dl>
+      <div class="sale-cta">
+        <a class="btn" href="mailto:offers@fox-berg.com?subject=offer%20for%20fox-berg.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>make an offer</a>
+        <a class="sale-mail" href="mailto:offers@fox-berg.com?subject=offer%20for%20fox-berg.com">offers@fox-berg.com</a>
+      </div>
+      <p class="sale-note">email your offer and i'll get back to you.</p>
+    </div>
+  </section>
+</main>
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>
