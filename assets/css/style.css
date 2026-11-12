@@ -1,0 +1,274 @@
+/* fox-berg.com
+   the for-sale page. same catppuccin windows as 3hz.dev, mitchellberg.org and naftaliro.dev.
+   colors: https://catppuccin.com/palette  (latte if your system is light, mocha otherwise) */
+
+@font-face { font-family: "Iosevka"; src: url("../fonts/iosevka-400-normal.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Iosevka"; src: url("../fonts/iosevka-700-normal.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Silkscreen"; src: url("../fonts/silkscreen-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+
+/* ── palettes ─────────────────────────────────────────── */
+
+:root, [data-flavor="mocha"] {
+  --rosewater:#f5e0dc; --flamingo:#f2cdcd; --pink:#f5c2e7; --mauve:#cba6f7; --red:#f38ba8; --maroon:#eba0ac;
+  --peach:#fab387; --yellow:#f9e2af; --green:#a6e3a1; --teal:#94e2d5; --sky:#89dceb; --sapphire:#74c7ec;
+  --blue:#89b4fa; --lavender:#b4befe; --text:#cdd6f4; --subtext1:#bac2de; --subtext0:#a6adc8;
+  --overlay2:#9399b2; --overlay1:#7f849c; --overlay0:#6c7086; --surface2:#585b70; --surface1:#45475a;
+  --surface0:#313244; --base:#1e1e2e; --mantle:#181825; --crust:#11111b;
+  color-scheme: dark;
+}
+[data-flavor="macchiato"] {
+  --rosewater:#f4dbd6; --flamingo:#f0c6c6; --pink:#f5bde6; --mauve:#c6a0f6; --red:#ed8796; --maroon:#ee99a0;
+  --peach:#f5a97f; --yellow:#eed49f; --green:#a6da95; --teal:#8bd5ca; --sky:#91d7e3; --sapphire:#7dc4e4;
+  --blue:#8aadf4; --lavender:#b7bdf8; --text:#cad3f5; --subtext1:#b8c0e0; --subtext0:#a5adcb;
+  --overlay2:#939ab7; --overlay1:#8087a2; --overlay0:#6e738d; --surface2:#5b6078; --surface1:#494d64;
+  --surface0:#363a4f; --base:#24273a; --mantle:#1e2030; --crust:#181926;
+  color-scheme: dark;
+}
+[data-flavor="frappe"] {
+  --rosewater:#f2d5cf; --flamingo:#eebebe; --pink:#f4b8e4; --mauve:#ca9ee6; --red:#e78284; --maroon:#ea999c;
+  --peach:#ef9f76; --yellow:#e5c890; --green:#a6d189; --teal:#81c8be; --sky:#99d1db; --sapphire:#85c1dc;
+  --blue:#8caaee; --lavender:#babbf1; --text:#c6d0f5; --subtext1:#b5bfe2; --subtext0:#a5adce;
+  --overlay2:#949cbb; --overlay1:#838ba7; --overlay0:#737994; --surface2:#626880; --surface1:#51576d;
+  --surface0:#414559; --base:#303446; --mantle:#292c3c; --crust:#232634;
+  color-scheme: dark;
+}
+[data-flavor="latte"] {
+  /* same deal as 3hz: latte's accents pulled darker so small text stays readable */
+  --rosewater:#974b3c; /* #dc8a78 */ --flamingo:#a24346; /* #dd7878 */ --pink:#a33389;  /* #ea76cb */
+  --mauve:#802ce4;     /* #8839ef */ --red:#c20f35;      /* #d20f39 */ --maroon:#c01935; /* #e64553 */
+  --peach:#aa4005;     /* #fe640b */ --yellow:#8a5507;   /* #df8e1d */ --green:#1f7107;  /* #40a02b */
+  --teal:#056d73;      /* #179299 */ --sky:#046993;      /* #04a5e5 */ --sapphire:#076c7c; /* #209fb5 */
+  --blue:#0b55e3;      /* #1e66f5 */ --lavender:#4755c6; /* #7287fd */
+  --text:#4c4f69; --subtext1:#5c5f77; --subtext0:#5c5f77; /* #6c6f85 */
+  --overlay2:#7c7f93; --overlay1:#8c8fa1; --overlay0:#9ca0b0; --surface2:#acb0be; --surface1:#bcc0cc;
+  --surface0:#ccd0da; --base:#eff1f5; --mantle:#e6e9ef; --crust:#dce0e8;
+  color-scheme: light;
+}
+
+/* ── knobs ────────────────────────────────────────────── */
+
+:root {
+  --chrome: var(--overlay2);
+  --radius: 10px;
+  --border: 2px;
+  --win-bg: color-mix(in srgb, var(--base) 84%, transparent);
+  --bar-bg: color-mix(in srgb, var(--mantle) 88%, transparent);
+  --mono: "Iosevka", "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --pixel: "Silkscreen", var(--mono);
+  --dim: var(--subtext0);
+  --pill: color-mix(in srgb, var(--surface0) 70%, var(--mantle));
+  --on-accent: var(--crust);
+}
+:root[data-flavor="latte"] { --pill: var(--base); --on-accent: var(--base); --chrome: var(--subtext0); }
+@supports not (color: color-mix(in srgb, red, blue)) {
+  :root { --win-bg: var(--base); --bar-bg: var(--mantle); --pill: var(--surface0); }
+}
+
+@property --angle { syntax: "<angle>"; inherits: false; initial-value: 45deg; }
+
+/* ── base ─────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--crust); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--mono);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--text);
+}
+p, dl, dd, h1, h2 { margin: 0; }
+a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--sky); }
+:focus-visible { outline: 2px solid var(--mauve); outline-offset: 2px; border-radius: 4px; }
+::selection { background: color-mix(in srgb, var(--mauve) 35%, transparent); color: var(--text); }
+b { font-weight: 700; }
+.ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* the wallpaper canvas sits behind everything */
+#wall {
+  position: fixed; inset: 0;
+  width: 100vw; height: 100vh; height: 100lvh;
+  image-rendering: pixelated;
+  z-index: -1;
+  background: var(--crust);
+}
+
+/* ── bar ──────────────────────────────────────────────── */
+
+.bar {
+  position: sticky; top: 10px; z-index: 20;
+  display: flex; align-items: center; gap: 10px;
+  width: calc(100% - 20px);
+  max-width: 1200px;
+  height: 42px;
+  margin: 10px auto 0;
+  padding: 0 6px;
+  font-size: 13.5px;
+  background: var(--bar-bg);
+  border: var(--border) solid var(--surface0);
+  border-radius: var(--radius);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.bar a { text-decoration: none; }
+
+.bar-logo {
+  display: flex; align-items: center; gap: 7px;
+  height: 30px; padding: 0 10px;
+  color: var(--on-accent);
+  background: var(--mauve);
+  border-radius: 7px;
+  font-family: var(--pixel);
+  font-size: 13px;
+  letter-spacing: .02em;
+}
+.bar-logo:hover { color: var(--on-accent); background: var(--lavender); }
+.bar-logo svg { width: 24px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+.ws { display: flex; gap: 2px; }
+.ws a {
+  display: flex; align-items: center; gap: 6px;
+  height: 30px; padding: 0 9px;
+  color: var(--text);
+  background: var(--pill);
+  border-radius: 7px;
+}
+.ws a b { color: var(--mauve); font-weight: 700; }
+
+.bar-title {
+  flex: 1; min-width: 0;
+  text-align: center;
+  color: var(--subtext0);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.bar-mods { display: flex; gap: 6px; margin-left: auto; }
+.mod {
+  display: flex; align-items: center; gap: 7px;
+  height: 30px; padding: 0 11px;
+  font: inherit;
+  color: var(--subtext1);
+  background: var(--pill);
+  border: 0;
+  border-radius: 7px;
+  white-space: nowrap;
+}
+.mod-clock { color: var(--lavender); }
+.mod-clock .day { color: var(--dim); }
+.mod-flavor { color: var(--mauve); cursor: pointer; }
+.mod-flavor:hover { background: var(--surface1); }
+.swatch { width: 11px; height: 11px; border-radius: 50%; background: conic-gradient(var(--mauve) 0 25%, var(--pink) 0 50%, var(--lavender) 0 75%, var(--blue) 0); }
+
+/* ── window ───────────────────────────────────────────── */
+
+.win {
+  position: relative;
+  display: flex; flex-direction: column;
+  min-width: 0;
+  background: var(--win-bg);
+  border-radius: var(--radius);
+  -webkit-backdrop-filter: blur(12px) saturate(1.15);
+  backdrop-filter: blur(12px) saturate(1.15);
+}
+/* border lives on a masked pseudo-element so the translucent window
+   doesn't show the gradient through it */
+.win::before {
+  content: "";
+  position: absolute; inset: 0;
+  padding: var(--border);
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle), var(--mauve), var(--lavender), var(--pink), var(--mauve));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+  animation: borderangle 8s linear infinite;
+}
+@keyframes borderangle { to { --angle: 405deg; } }
+
+.win-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 7px 16px 6px;
+  font-size: 13px;
+  color: var(--dim);
+  border-bottom: 1px solid var(--surface0);
+}
+.win-title { font-size: inherit; font-weight: 400; color: var(--subtext0); }
+.win-bar b { color: var(--mauve); margin-right: 4px; }
+.win-meta { color: var(--dim); }
+.win-body { flex: 1; padding: 14px 18px 18px; }
+
+.cmd { color: var(--text); margin-bottom: 10px; }
+.p-dir { color: var(--blue); font-weight: 700; }
+.p-arrow { color: var(--green); }
+
+/* ── the listing ──────────────────────────────────────── */
+
+.sale { max-width: 660px; margin: 11vh auto 0; padding: 0 10px; }
+
+.sale-name {
+  margin: 4px 0 2px;
+  font-size: clamp(30px, 8vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.sale-name .tld { color: var(--mauve); }
+.sale-intro { color: var(--subtext1); }
+.sale-rule { margin: 8px 0 6px; color: var(--overlay0); line-height: 1.2; overflow: hidden; white-space: nowrap; }
+
+.sale-info > div { display: grid; grid-template-columns: 9ch 1fr; column-gap: 1ch; }
+.sale-info dt { color: var(--mauve); font-weight: 700; }
+.sale-info dd { min-width: 0; overflow-wrap: anywhere; }
+.on { color: var(--green); }
+.on::before { content: "● "; font-size: .8em; vertical-align: 1px; }
+
+.sale-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 22px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px;
+  font-weight: 700;
+  color: var(--on-accent);
+  background: var(--mauve);
+  border-radius: 7px;
+  text-decoration: none;
+}
+.btn:hover { color: var(--on-accent); background: var(--lavender); }
+.btn .ic { width: 17px; height: 17px; }
+.sale-mail { color: var(--subtext1); }
+.sale-note { margin-top: 12px; font-size: 14px; color: var(--dim); }
+
+/* the 404 page */
+.err { color: var(--red); }
+
+/* ── smaller screens ──────────────────────────────────── */
+
+@media (max-width: 1039px) {
+  .bar { max-width: 740px; }
+  .bar-title { display: none; }
+}
+
+@media (max-width: 720px) {
+  body { font-size: 15px; }
+  :root { --win-bg: var(--base); --bar-bg: var(--mantle); }
+  .bar { width: calc(100% - 16px); margin: 8px auto 0; top: 8px; gap: 6px; padding: 0 4px; }
+  .win, .bar { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .mod { padding: 0 9px; }
+  .mod-flavor #flavor-name { display: none; }
+  .sale { margin-top: 6vh; padding: 0 8px; }
+  .win-body { padding: 12px 14px 16px; }
+}
+
+@media (max-width: 380px) {
+  .bar-logo span { display: none; }
+  .mod-clock { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
